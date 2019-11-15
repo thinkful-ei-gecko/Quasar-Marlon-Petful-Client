@@ -7,9 +7,26 @@ import PetDetails from './components/PetDetails/PetDetails';
 import Home from './components/Home/Home';
 import Pets from './components/Pets/Pets';
 import NavBar from './components/NavBar/NavBar';
-import Form from './components/Form/Form'
+import Form from './components/Form/Form';
+import ApiService from './api-service';
 
-function App() {
+export default class App extends React.Component {
+  state = {
+    cats: [],
+    dogs: [],
+    people: [],
+  }
+
+  componentDidMount(){
+    console.log('Test')
+    ApiService.getCats()
+    .then(res => this.setState({
+      cats: res
+    }))
+  }
+
+render() {
+  console.log(this.state)
   return (
     <div className="App">
       <header className="App-header">
@@ -25,7 +42,7 @@ function App() {
       />
       <Route 
       exact path='/pets'
-      render={(props) => <Pets {...props} />}
+      render={(props) => <Pets store={this.state} {...props} />}
       />
       <Route 
       exact path='/pets/:pet_id'
@@ -39,6 +56,7 @@ function App() {
     </main>
     </div>
   );
+  }
 }
 
-export default App;
+
