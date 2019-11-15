@@ -4,9 +4,7 @@ import { Switch } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import './App.css';
 import Home from './components/Home/Home';
-// import Pets from './components/Pets/Pets';
 import NavBar from './components/NavBar/NavBar';
-// import Form from './components/Form/Form';
 import Adoption from './components/Adoption/adoption';
 import ApiService from './api-service';
 
