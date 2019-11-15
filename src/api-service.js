@@ -2,9 +2,9 @@ import config from './config'
 
 const ApiService = {
   getCats() {
-    return fetch(`${config.API_LOCAL_ENDPOINT}api/cats`, {
+    return fetch(`${config.API_LOCAL_ENDPOINT}api/cat`, {
       headers: {
-        Authorization: `Bearer ${config.API_KEY}`
+
       },
     })
     .then(res =>
@@ -14,19 +14,62 @@ const ApiService = {
     )
   },
   getDogs() {
-    return fetch(`${config.API_ENDPOINT}/dogs`)
+    return fetch(`${config.API_ENDPOINT}/dogs`, {
+      headers: {
+
+      },
+    })
+    .then(res =>
+      (!res.ok)
+        ? res.json().then(e => Promise.reject(e))
+        : res.json()
+    )
   },
   getPeople() {
-    return fetch(`${config.API_ENDPOINT}/people`)
-  },
+    return fetch(`${config.API_ENDPOINT}/people`, {
+      headers: {
 
+      },
+    })
+    .then(res =>
+      (!res.ok)
+        ? res.json().then(e => Promise.reject(e))
+        : res.json()
+    )
+  },
   adoptCat() {
-
+    return fetch((`${config.API_ENDPOINT}/cat`),
+    {
+      method: 'DELETE',
+      headers: { 'content-type': 'application/json' },
+    }
+    )
+    .then(res => {
+      if (!res.ok)
+        return res.json().then(e => Promise.reject(e))
+      return res.json()
+    })
+    .catch(error => {
+			alert(error.message)
+		})
   },
 
-  adoptDog(){
-
-  },
+  adoptDog() {
+    return fetch((`${config.API_ENDPOINT}/dog`),
+    {
+      method: 'DELETE',
+      headers: { 'content-type': 'application/json' },
+    }
+    )
+    .then(res => {
+      if (!res.ok)
+        return res.json().then(e => Promise.reject(e))
+      return res.json()
+    })
+    .catch(error => {
+			alert(error.message)
+		})
+  }
 }
 
 export default ApiService;
