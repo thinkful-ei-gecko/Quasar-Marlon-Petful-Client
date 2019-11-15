@@ -2,9 +2,9 @@ import config from './config'
 
 const ApiService = {
   getCats() {
-    return fetch(`${config.API_ENDPOINT}/cats`, {
+    return fetch(`${config.API_LOCAL_ENDPOINT}api/cats`, {
       headers: {
-
+        Authorization: `Bearer ${config.API_KEY}`
       },
     })
     .then(res =>
