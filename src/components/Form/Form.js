@@ -2,12 +2,7 @@ import React from 'react';
 import './Form.css'
 
 export default class Form extends React.Component {
-
-  //People info
-  //Search
-  //Name
-  //Show people queue
-  //Your position in queue
+  // 
 
   render() {
     return(

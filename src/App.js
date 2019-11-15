@@ -3,11 +3,11 @@ import { Route } from 'react-router-dom';
 import { Switch } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import './App.css';
-import PetDetails from './components/PetDetails/PetDetails';
 import Home from './components/Home/Home';
-import Pets from './components/Pets/Pets';
+// import Pets from './components/Pets/Pets';
 import NavBar from './components/NavBar/NavBar';
-import Form from './components/Form/Form';
+// import Form from './components/Form/Form';
+import Adoption from './components/Adoption/adoption';
 import ApiService from './api-service';
 
 export default class App extends React.Component {
@@ -41,16 +41,8 @@ render() {
       render={(props) => <Home {...props} />}
       />
       <Route 
-      exact path='/pets'
-      render={(props) => <Pets store={this.state} {...props} />}
-      />
-      <Route 
-      exact path='/pets/:pet_id'
-      render={(props) => <PetDetails {...props} />}
-      />
-      <Route 
-      exact path='/adopt'
-      render={(props) => <Form {...props} />}
+      exact path='/adoption'
+      render={(props) => <Adoption {...props} />}
       />
       </Switch>
     </main>

@@ -12,10 +12,7 @@ export default class NavBar extends React.Component {
          <Link to='/'>Home</Link>
         </li>
         <li>
-         <Link to='/pets'>Pets</Link>
-        </li>
-        <li>
-         <Link to='/adopt'>Adopt</Link>
+         <Link to='/adoption'>Adopt</Link>
         </li>
       </ul>
         
