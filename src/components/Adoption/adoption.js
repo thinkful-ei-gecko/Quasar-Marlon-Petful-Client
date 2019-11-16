@@ -6,8 +6,8 @@ export default class Adoption extends React.Component {
   render() {
     return (
       <>
-        { <Form></Form> }
-        <Pets></Pets>
+        <Form></Form>
+        <Pets cats={this.props.cats} dogs={this.props.dogs}></Pets>
       </>
     );
   }
