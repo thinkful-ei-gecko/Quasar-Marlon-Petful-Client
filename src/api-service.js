@@ -38,7 +38,7 @@ const ApiService = {
     )
   },
   adoptCat() {
-    return fetch((`${config.API_ENDPOINT}/cat`),
+    return fetch((`${config.API_LOCAL_ENDPOINT}api/cat`),
     {
       method: 'DELETE',
       headers: { 'content-type': 'application/json' },
@@ -55,7 +55,7 @@ const ApiService = {
   },
 
   adoptDog() {
-    return fetch((`${config.API_ENDPOINT}/dog`),
+    return fetch((`${config.API_LOCAL_ENDPOINT}api/dog`),
     {
       method: 'DELETE',
       headers: { 'content-type': 'application/json' },

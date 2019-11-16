@@ -15,23 +15,32 @@ export default class App extends React.Component {
     people: []
   };
 
-  componentDidMount(){
-    console.log('Test')
-    ApiService.getCats()
-    .then(res => this.setState({
-      cats: res
-    }))
-
-    ApiService.getDogs()
-    .then(res => this.setState({
-      dogs: res
-    }))
-
-    ApiService.getPeople()
-    .then(res => this.setState({
-      people: res
-    }))
+  componentDidMount() {
+    console.log('Test');
+    this.updateCats();
+    this.updateDogs();
+    ApiService.getPeople().then(res =>
+      this.setState({
+        people: res
+      })
+    );
   }
+
+  updateCats = () => {
+    ApiService.getCats().then(res =>
+      this.setState({
+        cats: res
+      })
+    );
+  };
+
+  updateDogs = () => {
+    ApiService.getDogs().then(res =>
+      this.setState({
+        dogs: res
+      })
+    );
+  };
 
   render() {
     console.log(this.state);
@@ -48,7 +57,15 @@ export default class App extends React.Component {
             <Route
               exact
               path='/adoption'
-              render={props => <Adoption {...props} cats={this.state.cats} dogs={this.state.dogs} />}
+              render={props => (
+                <Adoption
+                  {...props}
+                  cats={this.state.cats}
+                  dogs={this.state.dogs}
+                  updateCats={this.updateCats}
+                  updateDogs={this.updateDogs}
+                />
+              )}
             />
           </Switch>
         </main>
