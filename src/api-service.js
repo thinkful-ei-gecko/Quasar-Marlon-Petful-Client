@@ -47,7 +47,7 @@ const ApiService = {
     .then(res => {
       if (!res.ok)
         return res.json().then(e => Promise.reject(e))
-      return res.json()
+   
     })
     .catch(error => {
 			alert(error.message)
@@ -69,6 +69,10 @@ const ApiService = {
     .catch(error => {
 			alert(error.message)
 		})
+  },
+
+  signUp() {
+
   }
 }
 
