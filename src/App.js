@@ -12,41 +12,38 @@ export default class App extends React.Component {
   state = {
     cats: [],
     dogs: [],
-    people: [],
+    people: []
+  };
+
+  componentDidMount() {
+    console.log('Test');
+    ApiService.getCats().then(res =>
+      this.setState({
+        cats: res
+      })
+    );
   }
 
-  componentDidMount(){
-    console.log('Test')
-    ApiService.getCats()
-    .then(res => this.setState({
-      cats: res
-    }))
-  }
-
-render() {
-  console.log(this.state)
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Welcome to Petful</h1>
-        <h2>Your FIFO adoption agency</h2>
-      </header>
-    <NavBar />
-    <main>
-      <Switch>
-      <Route 
-      exact path='/'
-      render={(props) => <Home {...props} />}
-      />
-      <Route 
-      exact path='/adoption'
-      render={(props) => <Adoption {...props} />}
-      />
-      </Switch>
-    </main>
-    </div>
-  );
+  render() {
+    console.log(this.state);
+    return (
+      <div className='App'>
+        <header className='App-header'>
+          <h1>Welcome to Petful</h1>
+          <h2>Your FIFO adoption agency</h2>
+        </header>
+        <NavBar />
+        <main>
+          <Switch>
+            <Route exact path='/' render={props => <Home {...props} />} />
+            <Route
+              exact
+              path='/adoption'
+              render={props => <Adoption {...props} cats={this.state.cats} dogs={this.state.dogs} />}
+            />
+          </Switch>
+        </main>
+      </div>
+    );
   }
 }
-
-
