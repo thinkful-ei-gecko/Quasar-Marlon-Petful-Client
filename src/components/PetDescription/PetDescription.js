@@ -1,14 +1,23 @@
 import React from 'react';
 import './PetDescription.css';
 import ApiService from '../../api-service';
+import PetContext from '../../PetContext';
 
 export default class PetDescription extends React.Component {
+  static contextType = PetContext;
   state = {
     currentPetIndex: 0
   };
-
+  
   componentDidMount() {
+    ApiService.getDogs()
+    .then(this.context.updateDogs)
 
+    ApiService.getCats()
+    .then(this.context.updateCats)
+
+    ApiService.getPeople()
+    .then(this.context.updatePeople)
   }
 
   goToNextPet = () => {
@@ -30,17 +39,21 @@ export default class PetDescription extends React.Component {
   };
 
   adoptAPet = () => {
-    console.log(this.props)
-    if (this.props.petType === 'cat') {
-      ApiService.adoptCat().then(() => this.props.updateCats).then(() => {
-        console.log(this.props)
-      })
-    } else if (this.props.petType === 'dog') {
-      ApiService.adoptDog().then(() => this.props.updateDogs);
+    if (this.props.petType === 'cat' && this.context.people !== undefined) {
+      ApiService.adoptCat()
+      .then(this.context.updateCats)
+    } 
+    if (this.props.petType === 'dog' && this.context.people[0] !== undefined) {
+      ApiService.adoptDog()
+      .then(this.context.updateDogs)
+    }
+    else {
+      alert('Please fill in your name to adopt a pet')
     }
   };
 
   render() {
+    console.log(this.context.people)
     let adoptButton =
       this.state.currentPetIndex === 0 ? (
         <button

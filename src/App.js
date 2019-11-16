@@ -7,59 +7,38 @@ import Home from './components/Home/Home';
 import NavBar from './components/NavBar/NavBar';
 import Adoption from './components/Adoption/adoption';
 import ApiService from './api-service';
+import PetContext from './PetContext';
 
 export default class App extends React.Component {
-  state = {
-    cats: [],
-    dogs: [],
-    people: [],
-    adoptedDogs: [],
-    adoptedCats: [],
-  };
+ static contextType = PetContext;
 
   componentDidMount() {
-    console.log('Test');
-    this.updateCats();
-    this.updateDogs();
-    ApiService.getPeople().then(res =>
-      this.setState({
-        people: res
-      })
-    );
+    ApiService.getDogs()
+    .then(this.context.updateDogs)
+
+    ApiService.getCats()
+    .then(this.context.updateCats)
+
+    ApiService.getPeople()
+    .then(this.context.updatePeople)
   }
 
-  updateCats = () => {
-    ApiService.getCats().then(res =>
-      this.setState({
-        cats: res
-      })
-    );
-  };
+  // filterAdoptedDogs = () => {
+  //   let adoptedDogs = this.state.dogs.filter(dog => dog.adopter !== null);
+  //   return adoptedDogs;
+  // }
 
-  updateDogs = () => {
-    ApiService.getDogs().then(res =>
-      this.setState({
-        dogs: res
-      })
-    );
-  };
-
-  filterAdoptedDogs = () => {
-    let adoptedDogs = this.state.dogs.filter(dog => dog.adopter !== null);
-    return adoptedDogs;
-  }
-
-  filterAdoptedCats = () => {
-    let adoptedCats = this.state.cats.filter(cat => cat.adopter !== null);
-    return adoptedCats;
-  }
+  // filterAdoptedCats = () => {
+  //   let adoptedCats = this.state.cats.filter(cat => cat.adopter !== null);
+  //   return adoptedCats;
+  // }
 
 
 
   render() {
-    console.log(this.state.dogs)
-    console.log(this.state.cats)
-    console.log(this.filterAdoptedCats())
+    console.log(this.context.dogs)
+    console.log(this.context.cats)
+    console.log(this.context.people)
     return (
       <div className='App'>
         <header className='App-header'>
@@ -76,12 +55,6 @@ export default class App extends React.Component {
               render={props => (
                 <Adoption
                   {...props}
-                  cats={this.state.cats}
-                  dogs={this.state.dogs}
-                  updateCats={this.updateCats}
-                  updateDogs={this.updateDogs}
-                  adoptedDogs={this.filterAdoptedDogs()}
-                  adoptedCats={this.filterAdoptedCats()}
                 />
               )}
             />

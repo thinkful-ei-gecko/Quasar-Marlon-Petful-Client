@@ -2,30 +2,36 @@ import React from 'react';
 import './Pets.css';
 import { Link } from 'react-router-dom';
 import PetDescription from '../PetDescription/PetDescription';
+import ApiService from '../../api-service';
+import PetContext from '../../PetContext';
 
 export default class Pets extends React.Component {
-  state = {
-    adoptedPets: [],
-  }
+  static contextType = PetContext;
   componentDidMount() {
-    this.setState({
-      adoptedPets: [...this.props.adoptedDogs, ...this.props.adoptedCats]
-    })
+    ApiService.getDogs()
+    .then(this.context.updateDogs)
+
+    ApiService.getCats()
+    .then(this.context.updateCats)
+
+    ApiService.getPeople()
+    .then(this.context.updatePeople)
   }
 
-  renderAdoptedPets() {
-    console.log(this.props)
-    let adoptedPets = this.state.adoptedPets.map((pet, index) => {
-      return(
-        <li key={index} className='adoptedPet'>
-          <img src={pet.imageURL}/>
-        </li>
-      )
-    })
-    return adoptedPets;
-  }
+  // renderAdoptedPets() {
+  //   console.log(this.props)
+  //   let adoptedPets = this.state.adoptedPets.map((pet, index) => {
+  //     return(
+  //       <li key={index} className='adoptedPet'>
+  //         <img src={pet.imageURL}/>
+  //       </li>
+  //     )
+  //   })
+  //   return adoptedPets;
+  // }
 
   render() {
+    console.log(this.context.dogs)
     return (
       <div className='pets'>
         <PetDescription
@@ -41,7 +47,6 @@ export default class Pets extends React.Component {
           updateDogs={this.updateDogs}
         ></PetDescription>
         <ul className='adoptedPets'>
-          {this.renderAdoptedPets()}
           <h3>Test</h3>
         </ul>
         </div>
