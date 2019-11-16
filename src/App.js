@@ -83,6 +83,7 @@ export default class App extends React.Component {
                   {...props}
                   cats={this.state.cats}
                   dogs={this.state.dogs}
+                  people={this.state.people}
                   updatePeople={() => this.updatePeople()}
                   updateCats={() => this.updateCats()}
                   updateDogs={() => this.updateDogs()}
