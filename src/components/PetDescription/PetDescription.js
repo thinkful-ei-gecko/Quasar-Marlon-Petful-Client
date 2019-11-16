@@ -28,23 +28,23 @@ export default class PetDescription extends React.Component {
   adoptAPet = () => {
     if (this.props.petType === 'cat' && this.props.people !== []) {
       ApiService.adoptCat().then(() => this.props.updateCats());
-    } 
+    }
     if (this.props.petType === 'dog' && this.props.people !== []) {
       ApiService.adoptDog().then(() => this.props.updateDogs());
-    }
-    else  {
-      alert('Please fill out your name to adopt a pet')
+    } else {
+      alert('Please fill out your name to adopt a pet');
     }
   };
 
   render() {
-    console.log(this.props.people)
+    let pets = this.props.pets.length === 0 ? [''] : this.props.pets;
+    console.log(this.props.people);
     let adoptButton =
       this.state.currentPetIndex === 0 ? (
         <button
           className='adopt-button'
           disabeled={
-            this.props.pets[this.state.currentPetIndex].adopter == null ? 1 : 0
+            pets[this.state.currentPetIndex].adopter == null ? 1 : 0
           }
           onClick={() => this.adoptAPet()}
         >
@@ -52,10 +52,10 @@ export default class PetDescription extends React.Component {
         </button>
       ) : (
         <button className='adopt-button' disabled>
-          {this.props.pets[this.state.currentPetIndex].adopter == null
+          {pets[this.state.currentPetIndex].adopter == null
             ? 'waiting to be adopted'
             : `I'm reserved by
-          ${this.props.pets[this.state.currentPetIndex].adopter}`}
+          ${pets[this.state.currentPetIndex].adopter}`}
         </button>
       );
 
@@ -69,16 +69,16 @@ export default class PetDescription extends React.Component {
         </button>
         <img
           className='pet-image'
-          src={this.props.pets[this.state.currentPetIndex].imageURL}
-          alt={this.props.pets[this.state.currentPetIndex].imageDescription}
+          src={pets[this.state.currentPetIndex].imageURL}
+          alt={pets[this.state.currentPetIndex].imageDescription}
         />
         <div className='pet-details'>
           <ul>
-            <li>Name: {this.props.pets[this.state.currentPetIndex].name}</li>
-            <li>Sex: {this.props.pets[this.state.currentPetIndex].sex}</li>
-            <li>Age: {this.props.pets[this.state.currentPetIndex].age}</li>
-            <li>Breed: {this.props.pets[this.state.currentPetIndex].breed}</li>
-            <li>Story: {this.props.pets[this.state.currentPetIndex].story}</li>
+            <li>Name: {pets[this.state.currentPetIndex].name}</li>
+            <li>Sex: {pets[this.state.currentPetIndex].sex}</li>
+            <li>Age: {pets[this.state.currentPetIndex].age}</li>
+            <li>Breed: {pets[this.state.currentPetIndex].breed}</li>
+            <li>Story: {pets[this.state.currentPetIndex].story}</li>
           </ul>
           {adoptButton}
         </div>
