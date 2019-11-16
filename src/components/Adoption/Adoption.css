@@ -1,0 +1,4 @@
+.petContainer {
+  display: flex;
+  flex-direction: row;
+}
