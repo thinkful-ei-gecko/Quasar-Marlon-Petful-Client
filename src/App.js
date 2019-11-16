@@ -21,6 +21,16 @@ export default class App extends React.Component {
     .then(res => this.setState({
       cats: res
     }))
+
+    ApiService.getDogs()
+    .then(res => this.setState({
+      dogs: res
+    }))
+
+    ApiService.getPeople()
+    .then(res => this.setState({
+      people: res
+    }))
   }
 
 render() {
