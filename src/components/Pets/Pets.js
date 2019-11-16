@@ -4,25 +4,9 @@ import { Link } from 'react-router-dom';
 import PetDescription from '../PetDescription/PetDescription';
 
 export default class Pets extends React.Component {
-  render() {
-    return (
-      <div className='pets'>
-        <PetDescription
-          className='cat-desc'
-          pets={this.props.cats}
-          petType='cat'
-          updateCats={this.updateCats}
-        ></PetDescription>
-        <PetDescription
-          className='dogs-desc'
-          pets={this.props.dogs}
-          petType='dog'
-          updateDogs={this.updateDogs}
-        ></PetDescription>
   state = {
-    adoptedPets: []
+    adoptedPets: [],
   }
-  
   componentDidMount() {
     this.setState({
       adoptedPets: [...this.props.adoptedDogs, ...this.props.adoptedCats]
@@ -39,19 +23,28 @@ export default class Pets extends React.Component {
     })
     return adoptedPets;
   }
+
   render() {
-    console.log(this.props)
-    console.log(this.state)
-    return(
+    return (
       <div className='pets'>
-        <PetDescription className='cat-desc' pets={this.props.cats} ></PetDescription>
-        <PetDescription className='dogs-desc' pets={this.props.dogs}></PetDescription>
+        <PetDescription
+          className='cat-desc'
+          pets={this.props.cats}
+          petType='cat'
+          updateCats={this.updateCats}
+        ></PetDescription>
+        <PetDescription
+          className='dogs-desc'
+          pets={this.props.dogs}
+          petType='dog'
+          updateDogs={this.updateDogs}
+        ></PetDescription>
         <ul className='adoptedPets'>
           {this.renderAdoptedPets()}
           <h3>Test</h3>
         </ul>
-
-      </div>
-    );
+        </div>
+   )
   }
 }
+
