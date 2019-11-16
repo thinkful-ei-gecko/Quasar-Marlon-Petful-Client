@@ -47,7 +47,6 @@ const ApiService = {
     .then(res => {
       if (!res.ok)
         return res.json().then(e => Promise.reject(e))
-      console.log('adopt cat successful');
       return 1;
     })
     .catch(error => {
@@ -70,6 +69,10 @@ const ApiService = {
     .catch(error => {
 			alert(error.message)
 		})
+  },
+
+  signUp() {
+
   }
 }
 

@@ -7,6 +7,10 @@ export default class PetDescription extends React.Component {
     currentPetIndex: 0
   };
 
+  componentDidMount() {
+
+  }
+
   goToNextPet = () => {
     let petIndex = this.state.currentPetIndex;
     if (petIndex < this.props.pets.length - 1) {
@@ -26,6 +30,7 @@ export default class PetDescription extends React.Component {
   };
 
   adoptAPet = () => {
+    console.log(this.props)
     if (this.props.petType === 'cat') {
       ApiService.adoptCat().then(() => this.props.updateCats());
     } else if (this.props.petType === 'dog') {

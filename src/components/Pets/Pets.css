@@ -23,3 +23,12 @@
 .mainDog img{
   width: 30
 }
+
+.adoptedPets ul {
+  float: left;
+}
+
+.adoptedPets img {
+  height: 50px;
+  width: 50px;
+}

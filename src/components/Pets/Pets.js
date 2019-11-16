@@ -4,6 +4,27 @@ import { Link } from 'react-router-dom';
 import PetDescription from '../PetDescription/PetDescription';
 
 export default class Pets extends React.Component {
+  state = {
+    adoptedPets: [],
+  }
+  componentDidMount() {
+    this.setState({
+      adoptedPets: [...this.props.adoptedDogs, ...this.props.adoptedCats]
+    })
+  }
+
+  renderAdoptedPets() {
+    console.log(this.props)
+    let adoptedPets = this.state.adoptedPets.map((pet, index) => {
+      return(
+        <li key={index} className='adoptedPet'>
+          <img src={pet.imageURL}/>
+        </li>
+      )
+    })
+    return adoptedPets;
+  }
+
   render() {
     return (
       <div className='pets'>
@@ -19,7 +40,12 @@ export default class Pets extends React.Component {
           petType='dog'
           updateDogs={() => this.props.updateDogs()}
         ></PetDescription>
-      </div>
-    );
+        <ul className='adoptedPets'>
+          {this.renderAdoptedPets()}
+          <h3>Test</h3>
+        </ul>
+        </div>
+   )
   }
 }
+
