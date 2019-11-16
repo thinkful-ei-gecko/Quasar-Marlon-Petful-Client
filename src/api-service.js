@@ -14,7 +14,7 @@ const ApiService = {
     )
   },
   getDogs() {
-    return fetch(`${config.API_ENDPOINT}/dogs`, {
+    return fetch(`${config.API_LOCAL_ENDPOINT}api/dog`, {
       headers: {
 
       },
@@ -26,7 +26,7 @@ const ApiService = {
     )
   },
   getPeople() {
-    return fetch(`${config.API_ENDPOINT}/people`, {
+    return fetch(`${config.API_LOCAL_ENDPOINT}api/people`, {
       headers: {
 
       },
