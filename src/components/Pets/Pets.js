@@ -5,8 +5,19 @@ import PetDescription from '../PetDescription/PetDescription';
 
 
 export default class Pets extends React.Component {
+  state = {
+    adoptedCats: [],
+    adoptedDogs: []
+  }
   
+  componentDidMount() {
+    this.setState({
+      adoptedCats: this.props.adoptedCats,
+      adoptedDogs: this.props.adoptedDogs
+    })
+  }
   render() {
+    console.log(this.props)
     return(
       <div className='pets'>
         <PetDescription className='cat-desc' pets={this.props.cats} ></PetDescription>

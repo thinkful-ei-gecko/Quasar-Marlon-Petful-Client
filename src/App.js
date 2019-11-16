@@ -12,7 +12,9 @@ export default class App extends React.Component {
   state = {
     cats: [],
     dogs: [],
-    people: []
+    people: [],
+    adoptedDogs: [],
+    adoptedCats: [],
   };
 
   componentDidMount(){
@@ -33,8 +35,22 @@ export default class App extends React.Component {
     }))
   }
 
+  filterAdoptedDogs = () => {
+    let adoptedDogs = this.state.dogs.filter(dog => dog.adopter !== null);
+    return adoptedDogs;
+  }
+
+  filterAdoptedCats = () => {
+    let adoptedCats = this.state.cats.filter(cat => cat.adopter !== null);
+    return adoptedCats;
+  }
+
+
+
   render() {
-    console.log(this.state);
+    console.log(this.state.dogs)
+    console.log(this.state.cats)
+    console.log(this.filterAdoptedCats())
     return (
       <div className='App'>
         <header className='App-header'>
@@ -48,7 +64,8 @@ export default class App extends React.Component {
             <Route
               exact
               path='/adoption'
-              render={props => <Adoption {...props} cats={this.state.cats} dogs={this.state.dogs} />}
+              render={props => <Adoption {...props} adoptedCats={this.filterAdoptedCats()} adoptedDogs={this.filterAdoptedDogs()}
+              cats={this.state.cats} dogs={this.state.dogs} />}
             />
           </Switch>
         </main>
