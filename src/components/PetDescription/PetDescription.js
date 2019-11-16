@@ -7,10 +7,6 @@ export default class PetDescription extends React.Component {
     currentPetIndex: 0
   };
 
-  componentDidMount() {
-
-  }
-
   goToNextPet = () => {
     let petIndex = this.state.currentPetIndex;
     if (petIndex < this.props.pets.length - 1) {
@@ -30,15 +26,19 @@ export default class PetDescription extends React.Component {
   };
 
   adoptAPet = () => {
-    console.log(this.props)
-    if (this.props.petType === 'cat') {
+    if (this.props.petType === 'cat' && this.props.people !== []) {
       ApiService.adoptCat().then(() => this.props.updateCats());
-    } else if (this.props.petType === 'dog') {
+    } 
+    if (this.props.petType === 'dog' && this.props.people !== []) {
       ApiService.adoptDog().then(() => this.props.updateDogs());
+    }
+    else  {
+      alert('Please fill out your name to adopt a pet')
     }
   };
 
   render() {
+    console.log(this.props.people)
     let adoptButton =
       this.state.currentPetIndex === 0 ? (
         <button

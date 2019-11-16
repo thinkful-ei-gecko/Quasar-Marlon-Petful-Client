@@ -31,7 +31,6 @@ export default class Form extends React.Component {
           <input type='text' onChange={e => this.handleTextInput(e.target.value)}></input>
           <button type='submit'>Submit</button>
         </form>
-        <h1>test</h1>
       </fieldset>
     )
   }
