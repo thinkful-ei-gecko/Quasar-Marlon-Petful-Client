@@ -13,6 +13,8 @@ export default class Adoption extends React.Component {
           dogs={this.props.dogs}
           updateCats={() => this.props.updateCats()}
           updateDogs={() => this.props.updateDogs()}
+          adoptedDogs={this.props.adoptedDogs}
+          adoptedCats={this.props.adoptedCats}
         ></Pets>
       </div>
     );
