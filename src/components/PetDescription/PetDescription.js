@@ -8,7 +8,7 @@ export default class PetDescription extends React.Component {
   };
 
   componentDidMount() {
-    
+
   }
 
   goToNextPet = () => {
@@ -32,7 +32,9 @@ export default class PetDescription extends React.Component {
   adoptAPet = () => {
     console.log(this.props)
     if (this.props.petType === 'cat') {
-      ApiService.adoptCat().then(() => this.props.updateCats);
+      ApiService.adoptCat().then(() => this.props.updateCats).then(() => {
+        console.log(this.props)
+      })
     } else if (this.props.petType === 'dog') {
       ApiService.adoptDog().then(() => this.props.updateDogs);
     }

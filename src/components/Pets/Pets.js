@@ -14,6 +14,7 @@ export default class Pets extends React.Component {
   }
 
   renderAdoptedPets() {
+    console.log(this.props)
     let adoptedPets = this.state.adoptedPets.map((pet, index) => {
       return(
         <li key={index} className='adoptedPet'>
