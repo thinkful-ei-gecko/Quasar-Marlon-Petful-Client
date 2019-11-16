@@ -11,13 +11,13 @@ export default class Pets extends React.Component {
           className='cat-desc'
           pets={this.props.cats}
           petType='cat'
-          updateCats={this.updateCats}
+          updateCats={() => this.props.updateCats()}
         ></PetDescription>
         <PetDescription
           className='dogs-desc'
           pets={this.props.dogs}
           petType='dog'
-          updateDogs={this.updateDogs}
+          updateDogs={() => this.props.updateDogs()}
         ></PetDescription>
       </div>
     );

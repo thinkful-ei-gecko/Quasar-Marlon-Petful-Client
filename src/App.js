@@ -19,14 +19,19 @@ export default class App extends React.Component {
     console.log('Test');
     this.updateCats();
     this.updateDogs();
+    this.updatePeople();
+  }
+
+  updatePeople = () => {
     ApiService.getPeople().then(res =>
       this.setState({
         people: res
       })
     );
-  }
+  };
 
   updateCats = () => {
+    console.log('updating cats');
     ApiService.getCats().then(res =>
       this.setState({
         cats: res
@@ -62,8 +67,8 @@ export default class App extends React.Component {
                   {...props}
                   cats={this.state.cats}
                   dogs={this.state.dogs}
-                  updateCats={this.updateCats}
-                  updateDogs={this.updateDogs}
+                  updateCats={() => this.updateCats()}
+                  updateDogs={() => this.updateDogs()}
                 />
               )}
             />

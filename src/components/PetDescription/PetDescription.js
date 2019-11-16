@@ -27,9 +27,9 @@ export default class PetDescription extends React.Component {
 
   adoptAPet = () => {
     if (this.props.petType === 'cat') {
-      ApiService.adoptCat().then(() => this.props.updateCats);
+      ApiService.adoptCat().then(() => this.props.updateCats());
     } else if (this.props.petType === 'dog') {
-      ApiService.adoptDog().then(() => this.props.updateDogs);
+      ApiService.adoptDog().then(() => this.props.updateDogs());
     }
   };
 
