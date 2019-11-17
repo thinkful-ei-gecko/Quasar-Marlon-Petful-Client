@@ -4,14 +4,14 @@ import ApiService from '../../api-service';
 
 export default class PetDescription extends React.Component {
   state = {
-    currentPetIndex: 0
+    currentPetIndex: 0,
   };
 
   goToNextPet = () => {
     let petIndex = this.state.currentPetIndex;
     if (petIndex < this.props.pets.length - 1) {
       this.setState({
-        currentPetIndex: ++petIndex
+        currentPetIndex: ++petIndex,
       });
     }
   };
@@ -20,7 +20,7 @@ export default class PetDescription extends React.Component {
     let petIndex = this.state.currentPetIndex;
     if (petIndex > 0) {
       this.setState({
-        currentPetIndex: --petIndex
+        currentPetIndex: --petIndex,
       });
     }
   };
@@ -38,51 +38,60 @@ export default class PetDescription extends React.Component {
 
   render() {
     let pets = this.props.pets.length === 0 ? [''] : this.props.pets;
+    let petIndex = this.state.currentPetIndex;
     console.log(this.props.people);
+    console.log(`petindex : ${petIndex}`);
     let adoptButton =
       this.state.currentPetIndex === 0 ? (
         <button
-          className='adopt-button'
-          disabeled={
-            pets[this.state.currentPetIndex].adopter == null ? 1 : 0
-          }
-          onClick={() => this.adoptAPet()}
-        >
+          className="adopt-button"
+          disabeled={pets[0].adopter == null ? 1 : 0}
+          onClick={() => this.adoptAPet()}>
           adopt me
         </button>
       ) : (
-        <button className='adopt-button' disabled>
-          {pets[this.state.currentPetIndex].adopter == null
+        <button className="adopt-button" disabled>
+          {pets[petIndex].adopter == null
             ? 'waiting to be adopted'
             : `I'm reserved by
-          ${pets[this.state.currentPetIndex].adopter}`}
+          ${pets[petIndex].adopter}`}
         </button>
       );
 
     return (
-      <>
-        <button className='prev-button' onClick={() => this.goToPreviousPet()}>
-          prev
-        </button>
-        <button className='next-button' onClick={() => this.goToNextPet()}>
-          next
-        </button>
-        <img
-          className='pet-image'
-          src={pets[this.state.currentPetIndex].imageURL}
-          alt={pets[this.state.currentPetIndex].imageDescription}
-        />
-        <div className='pet-details'>
+      <div className="pet-description">
+        <div class="pet-nav-buttons">
+          <button
+            className="prev-button"
+            onClick={() => this.goToPreviousPet()}
+            disabled={petIndex > 0 ? 0 : 1}>
+            prev
+          </button>
+          <button
+            className="next-button"
+            onClick={() => this.goToNextPet()}
+            disabled={petIndex < this.props.pets.length - 1 ? 0 : 1}>
+            next
+          </button>
+        </div>
+        <figure className="pet-image-container">
+          <img
+            className="pet-image"
+            src={pets[petIndex].imageURL}
+            alt={pets[petIndex].imageDescription}
+          />
+        </figure>
+        <div className="pet-details">
           <ul>
-            <li>Name: {pets[this.state.currentPetIndex].name}</li>
-            <li>Sex: {pets[this.state.currentPetIndex].sex}</li>
-            <li>Age: {pets[this.state.currentPetIndex].age}</li>
-            <li>Breed: {pets[this.state.currentPetIndex].breed}</li>
-            <li>Story: {pets[this.state.currentPetIndex].story}</li>
+            <li>Name: {pets[petIndex].name}</li>
+            <li>Sex: {pets[petIndex].sex}</li>
+            <li>Age: {pets[petIndex].age}</li>
+            <li>Breed: {pets[petIndex].breed}</li>
+            <li>Story: {pets[petIndex].story}</li>
           </ul>
           {adoptButton}
         </div>
-      </>
+      </div>
     );
   }
 }

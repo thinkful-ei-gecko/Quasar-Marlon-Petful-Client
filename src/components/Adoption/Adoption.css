@@ -1,4 +1,7 @@
 .petContainer {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  margin: 0 auto;
+  justify-content: center;
+  width: 70%;
 }

@@ -1,4 +1,56 @@
+.pet-nav-buttons {
+  margin: 1em auto;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.pet-nav-buttons button {
+  width: 80px;
+  height: 2em;
+  font-size: 16px;
+}
+
+.adopt-button {
+  padding: 0.5rem 0.75rem;
+  margin: 1rem;
+  font-size: 16px;
+}
+
+.pet-image-container {
+  width: 80%;
+  height: 80%;
+  max-width: 350px;
+  max-height: 350px;
+  position: relative;
+  overflow: hidden;
+}
+
 .pet-image {
-  width: 250px;
-  height: 250px;
+  max-width: 100%;
+  height: auto;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.pet-description {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1em;
+  margin: 0.5em;
+  border: 2px solid #909090;
+  border-radius: 4px;
+}
+
+.pet-details ul {
+  list-style: none;
+  margin: 1em;
+  padding: 0;
+  line-height: 1.5rem;
+  text-align: left;
 }
