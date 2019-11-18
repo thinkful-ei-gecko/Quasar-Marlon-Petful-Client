@@ -2,7 +2,7 @@ import config from './config'
 
 const ApiService = {
   getCats() {
-    return fetch(`${config.API_LOCAL_ENDPOINT}api/cat`, {
+    return fetch(`${config.API_ENDPOINT}api/cat`, {
       headers: {
 
       },
@@ -14,7 +14,7 @@ const ApiService = {
     )
   },
   getDogs() {
-    return fetch(`${config.API_LOCAL_ENDPOINT}api/dog`, {
+    return fetch(`${config.API_ENDPOINT}api/dog`, {
       headers: {
 
       },
@@ -26,7 +26,7 @@ const ApiService = {
     )
   },
   getPeople() {
-    return fetch(`${config.API_LOCAL_ENDPOINT}api/people`, {
+    return fetch(`${config.API_ENDPOINT}api/people`, {
       headers: {
 
       },
@@ -38,7 +38,7 @@ const ApiService = {
     )
   },
   adoptCat() {
-    return fetch((`${config.API_LOCAL_ENDPOINT}api/cat`),
+    return fetch((`${config.API_ENDPOINT}api/cat`),
     {
       method: 'DELETE',
       headers: { 'content-type': 'application/json' },
@@ -55,7 +55,7 @@ const ApiService = {
   },
 
   adoptDog() {
-    return fetch((`${config.API_LOCAL_ENDPOINT}api/dog`),
+    return fetch((`${config.API_ENDPOINT}api/dog`),
     {
       method: 'DELETE',
       headers: { 'content-type': 'application/json' },
@@ -72,7 +72,7 @@ const ApiService = {
   },
 
   signUp(newName) {
-    return fetch(`${config.API_LOCAL_ENDPOINT}api/people`,
+    return fetch(`${config.API_ENDPOINT}api/people`,
     {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
