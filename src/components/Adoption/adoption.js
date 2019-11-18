@@ -5,9 +5,10 @@ import './Adoption.css'
 
 export default class Adoption extends React.Component {
   render() {
+    console.log(this.props)
     return (
       <div className='petContainer'>
-        <Form updatePeople={() => this.updatePeople()}></Form>
+        <Form updatePeople={() => this.props.updatePeople()}></Form>
         <Pets
           cats={this.props.cats}
           dogs={this.props.dogs}
