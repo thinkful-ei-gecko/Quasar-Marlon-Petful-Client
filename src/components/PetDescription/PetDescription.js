@@ -26,23 +26,26 @@ export default class PetDescription extends React.Component {
   };
 
   adoptAPet = () => {
-    if (this.props.petType === 'cat' && this.props.people !== []) {
-      ApiService.adoptCat().then(() => this.props.updateCats());
+    if (this.props.petType === 'cat' && this.props.people[0]) {
+      ApiService.adoptCat()
+      .then(() => this.props.updateCats())
+      .then(() => this.props.updatePeople());
     }
-    if (this.props.petType === 'dog' && this.props.people !== []) {
-      ApiService.adoptDog().then(() => this.props.updateDogs());
-    } else {
-      alert('Please fill out your name to adopt a pet');
+    else if (this.props.petType === 'dog' && this.props.people[0]) {
+      ApiService.adoptDog()
+      .then(() => this.props.updateDogs())
+      .then(() => this.props.updatePeople());
+    } 
+    else if (!this.props.people[0]) {
+      alert('Please fill in your name to adopt a pet.')
     }
   };
 
   render() {
     let pets = this.props.pets.length === 0 ? [''] : this.props.pets;
     let petIndex = this.state.currentPetIndex;
-    console.log(this.props.people);
-    console.log(`petindex : ${petIndex}`);
     let adoptButton =
-      this.state.currentPetIndex === 0 ? (
+      (this.state.currentPetIndex === 0 && !pets[0].adopter) ? (
         <button
           className="adopt-button"
           disabeled={pets[0].adopter == null ? 1 : 0}
@@ -60,7 +63,7 @@ export default class PetDescription extends React.Component {
 
     return (
       <div className="pet-description">
-        <div class="pet-nav-buttons">
+        <div className="pet-nav-buttons">
           <button
             className="prev-button"
             onClick={() => this.goToPreviousPet()}

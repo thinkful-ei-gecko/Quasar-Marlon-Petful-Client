@@ -33,11 +33,18 @@
   width: 30;
 }
 
-.adoptedPets ul {
-  float: left;
+.adoptedPets {
+  list-style: none;
+  display: flex;
+  width: 70%;
+  justify-content: space-around;
+}
+
+.adoptedPets li {
+  margin: 5px;
 }
 
 .adoptedPets img {
   height: 50px;
-  width: 50px;
+  width: 75px;
 }

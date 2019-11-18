@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import './App.css';
 import Home from './components/Home/Home';
 import NavBar from './components/NavBar/NavBar';
-import Adoption from './components/Adoption/adoption';
+import Adoption from './components/Adoption/Adoption';
 import ApiService from './api-service';
 
 export default class App extends React.Component {
@@ -18,7 +18,6 @@ export default class App extends React.Component {
   };
 
   componentDidMount() {
-    console.log('Test');
     this.updateCats();
     this.updateDogs();
     this.updatePeople();
@@ -33,7 +32,6 @@ export default class App extends React.Component {
   };
 
   updateCats = () => {
-    console.log('updating cats');
     ApiService.getCats().then(res =>
       this.setState({
         cats: res
@@ -62,9 +60,6 @@ export default class App extends React.Component {
 
 
   render() {
-    console.log(this.state.dogs)
-    console.log(this.state.cats)
-    console.log(this.filterAdoptedCats())
     return (
       <div className='App'>
         <header className='App-header'>
@@ -87,8 +82,8 @@ export default class App extends React.Component {
                   updatePeople={() => this.updatePeople()}
                   updateCats={() => this.updateCats()}
                   updateDogs={() => this.updateDogs()}
-                  adoptedDogs={this.state.adoptedDogs}
-                  adoptedCats={this.state.adoptedCats}
+                  adoptedDogs={this.filterAdoptedDogs()}
+                  adoptedCats={this.filterAdoptedCats()}
                 />
               )}
             />

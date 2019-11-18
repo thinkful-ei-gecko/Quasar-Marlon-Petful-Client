@@ -11,18 +11,16 @@ export default class Form extends React.Component {
     this.setState({
       name: value,
     });
-  };
+  }
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log('Submit Fired!');
-    console.log(JSON.stringify(this.state));
     let newName = JSON.stringify(this.state);
-    ApiService.signUp(newName).then(() => this.props.updatePeople());
-  };
+    ApiService.signUp(newName).then(() => this.props.updatePeople())
+    alert('You may now adopt the next available pet.');
+  }
 
   render() {
-    console.log(this.state);
     return (
       <fieldset>
         <form onSubmit={e => this.handleSubmit(e)}>
@@ -30,6 +28,7 @@ export default class Form extends React.Component {
           <input
             type="text"
             id="Name"
+            value={this.state.name}
             onChange={e => this.handleTextInput(e.target.value)}></input>
           <button type="submit">Submit</button>
         </form>
